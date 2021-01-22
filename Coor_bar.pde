@@ -1,7 +1,23 @@
 class Coor_bar {
 
+  float[] intervals;
+
+  Coor_bar(float[] inter) {
+    setOrigin(inter);
+  }
   Coor_bar() {
+    float[] temp = {-10.0, 10.0, -10.0, 10.0};
+    setOrigin(temp);
+  }
+
+  void setOrigin(float[] inter) {
+    this.intervals = inter;
   }  
+
+void render (){
+axis(this.intervals[0],this.intervals[1],this.intervals[2],this.intervals[3]);
+
+}
 
   void axis (float x_start, float x_end, float y_start, float y_end) {
     strokeWeight(1);
@@ -54,9 +70,7 @@ class Coor_bar {
     for (int i=0; i<20; i++) {
       line(i*height/20, 0, i*height/20, width*0.8); //x aksen
       line(0, i*height/20, width*0.8, i*height/20);// y aksen
+      //virker ikke - skal den være der?
     }
-  }
-
-  void setOrigin() {
   }
 }
