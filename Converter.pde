@@ -1,7 +1,11 @@
 class Converter{
   Converter(){}
   
-  
+  // Consepts:
+  // Context-free grammar
+  // Lexical analysis
+  // Interpreter (computing)
+   
   Func convert(String input){
     // PEMDAS
     // number becomes number, add and sub, mult and devi, exponents, parentheses 
@@ -18,8 +22,16 @@ class Converter{
     
     }
     
-    // handle
+    // handle parentheses
+    // TODO 
     
+    
+    // handle exponents
+    //TODO
+    
+    
+    // handle multiplication and division
+    //TODO
     
     // handle add and sub
     input = input.replace("-", "&-").replace("+", "&+");
@@ -31,10 +43,14 @@ class Converter{
     }
     output = new MultiFunctor(elements);
     
+    // handle x
+    if(input.indexOf("x") != -1){
+    //TODO
+    
+    }
     
     return output;
   }
-
 }
 
 
@@ -49,12 +65,15 @@ class ConverterTester{
     println(con.convert("8.8 + 5").call(0),13.8);
     println(con.convert("8.8 - 5").call(0),3.8);
     
-    println(con.convert("10*8").call(0),80);
     
     println(con.convert("3x").call(5),15);
     println(con.convert("3x+0").call(5),15);
+    println(con.convert("3*x+0").call(5),15);
+    println(con.convert("x*3+0").call(5),15);
     println(con.convert("3x+5").call(5),20);
     println(con.convert("3x-5").call(5),10);
+   
+    println(con.convert("10*8").call(0),80);
     
   }
 
