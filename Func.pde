@@ -21,8 +21,17 @@ class MultiFunctor implements Func{
   // example is f(x) = 8x + sin(x) + 8x^2
   // That consists of three diffrent Functors in a chain
   
+  Func[] elements;
+  
+  MultiFunctor(Func[] _elements){
+    this.elements = _elements;
+  }
+  
   float call(float x){
-    //TODO: implement this
-    return 0;
+    float sum = 0;
+    for(Func q: this.elements){
+      sum += q.call(x);
+    }
+    return sum;
   }
 }
