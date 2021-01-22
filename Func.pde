@@ -16,6 +16,15 @@ class LinearEquation implements Func {
   }
 }
 
+class Constant implements Func{
+   float yIntercept;
+   
+   float call(float x){ // x is not used on purpose. 
+     return yIntercept;
+   }
+
+}
+
 class MultiFunctor implements Func{
   // Take a Fuct[] and handel it as a singe functor
   // example is f(x) = 8x + sin(x) + 8x^2
