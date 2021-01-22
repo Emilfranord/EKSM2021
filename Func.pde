@@ -19,6 +19,10 @@ class LinearEquation implements Func {
 class Constant implements Func{
    float yIntercept;
    
+   Constant(float  _yInter){
+    this.yIntercept = _yInter;
+   }
+   
    float call(float x){ // x is not used on purpose. 
      return yIntercept;
    }
@@ -43,4 +47,21 @@ class MultiFunctor implements Func{
     }
     return sum;
   }
+}
+
+class scaledFunc implements Func{
+  // equivalent to a*f(x)
+  
+  float scale;
+  Func function;
+  
+  scaledFunc(float _scale, Func _f){
+    this.scale = _scale;
+    this.function = _f;
+  }
+  
+  float call(float x){
+    return scale * this.function.call(x);
+  }
+
 }
