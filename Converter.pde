@@ -7,6 +7,8 @@ class Converter{
   // Interpreter (computing)
    
   Func convert(String input){
+    //return new JSEvaluator(input); // see comment above JSEvaluator in Func
+    
     // PEMDAS
     // number becomes number, add and sub, mult and devi, exponents, parentheses 
    
@@ -18,9 +20,7 @@ class Converter{
     // convert string number to float numbers
     try{
       return new Constant(Float.parseFloat(input));
-    }catch(Exception e){
-    
-    }
+    }catch(Exception e){}
     
     // handle parentheses
     // TODO 

@@ -63,5 +63,45 @@ class scaledFunc implements Func{
   float call(float x){
     return scale * this.function.call(x);
   }
+}
 
+
+// Note:
+// If we cannot get Converter to work, we will use JavaStript to solve the problem.
+// This is a functor class that can be called, and in constructed with the input string as its only parameter.
+// Like all other functors, it can be called and evaluated at x values.
+// This is slower, computationaly, in the long run, but it allows us to progress if we get stuck with parsing.
+// Talk with Kasper and the group before using it.
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+// inspired by https://stackoverflow.com/questions/41532497/how-to-convert-string-to-function-in-java
+class JSEvaluator implements Func {
+  ScriptEngineManager manager = new ScriptEngineManager();
+  ScriptEngine engine = manager.getEngineByName("js");
+  Object result = null;
+
+  String expression;
+  JSEvaluator(String _expression) {
+    this.expression = _expression;
+  }
+
+  float call(float x) {
+    String tempExpress = expression.replace("x", Float.toString(x));
+    Object result = null;
+    try {
+      result = engine.eval(tempExpress);
+    } 
+    catch(Exception e) {
+      print(e);
+    }
+    if (result != null ) {
+      Double temp = (Double) result; 
+      return temp.floatValue();
+    } else {
+      return 0;
+    }
+  }
 }
