@@ -76,7 +76,6 @@ class Coor_bar {
     mappedPoint(realX, realY, color(#778899));
   }
 
-
   void mappedPoint(float realX, float realY, color c) {
     float screenX = map(realX, this.intervals[0], this.intervals[1], 0, width*0.8);
     float screenY = map(realY, this.intervals[2], this.intervals[3], 0, height);
