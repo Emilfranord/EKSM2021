@@ -2,22 +2,21 @@ class Coor_bar {
 
   float[] intervals;
 
-  Coor_bar(float[] inter) {
-    setOrigin(inter);
+  Coor_bar(float[] _intervals) {
+    setOrigin(_intervals);
   }
   Coor_bar() {
-    float[] temp = {-10.0, 10.0, -10.0, 10.0};
-    setOrigin(temp);
+    float[] defaultInterval = {-10.0, 10.0, -10.0, 10.0};
+    setOrigin(defaultInterval);
   }
 
   void setOrigin(float[] inter) {
     this.intervals = inter;
   }  
 
-void render (){
-axis(this.intervals[0],this.intervals[1],this.intervals[2],this.intervals[3]);
-
-}
+  void render () {
+    axis(this.intervals[0], this.intervals[1], this.intervals[2], this.intervals[3]);
+  }
 
   void axis (float x_start, float x_end, float y_start, float y_end) {
     strokeWeight(1);
