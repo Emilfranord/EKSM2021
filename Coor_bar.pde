@@ -72,4 +72,23 @@ class Coor_bar {
       //virker ikke - skal den være der?
     }
   }
+  void mappedPoint(float realX, float realY) {
+    mappedPoint(realX, realY, color(#778899));
+  }
+
+
+  void mappedPoint(float realX, float realY, color c) {
+    float screenX = map(realX, this.intervals[0], this.intervals[1], 0, width*0.8);
+    float screenY = map(realY, this.intervals[2], this.intervals[3], 0, height);
+
+    strokeWeight(2);
+    stroke(c);
+    point(screenX, screenY);
+  }
+
+  void renderFunction(Func f, int lower, int upper, int jumpLength, color c) {
+    for (int value = lower; value <= upper; value+=jumpLength) {
+      mappedPoint(value, f.call(value), c);
+    }
+  }
 }
