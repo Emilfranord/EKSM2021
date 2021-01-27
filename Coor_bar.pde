@@ -24,11 +24,12 @@ class Coor_bar {
       float x_Coor = map(0, x_start, x_end, 0, width*0.8);
       line(x_Coor, 0, x_Coor, height);
       for (int i=0; i<= 20; i++) {
-        line(x_Coor, i*height*0.8/20, x_Coor-10, i*height/20);
+        line(x_Coor, i*height*0.8/20, x_Coor-10, i*height/20*0.8);
         strokeWeight(3); 
         if (x_start+i*(x_end-x_start)/20!=0.0) {
           fill(0); //farve 
-          text(x_start+i*(x_end-x_start)/20, x_Coor-30, i*height*0.8/20);//y aksens tal
+          float label =-x_start-i*(x_end-x_start)/20;
+          text(round(label), x_Coor-30, i*height*0.8/20);//y aksens tal
         }
       }
     } else {
@@ -37,7 +38,8 @@ class Coor_bar {
         line(width*0.2, i*height*0.8/20, width*0.2-10, i*height/20);
         strokeWeight(3); 
         fill(0); //farve 
-        text(x_start+i*(x_end-x_start)/20, width*0.2-30, i*height*0.8/20);//y aksens tal
+        float label = -x_start-i*(x_end-x_start)/20;
+        text(label, width*0.2-30, i*height*0.8/20);//y aksens tal
       }
     }
 
@@ -46,11 +48,12 @@ class Coor_bar {
       float y_Coor = map(0, y_start, y_end, 0, height*0.8);
       line(y_Coor, 0, y_Coor, width);
       for (int i=0; i<= 20; i++) {
-        line(y_Coor, i*width*0.8/20, y_Coor-10, i*width/20);
+        line(y_Coor, i*width*0.8/20, y_Coor-10, i*width/20*0.8);
         strokeWeight(3); 
         if (x_start+i*(y_end-y_start)/20!=0.0) {
-          fill(0); //farve 
-          text(y_start+i*(y_end-y_start)/20, y_Coor-30, i*width*0.8/20);//y aksens tal
+          fill(255, 0, 0); //farve 
+          float label = y_start+i*(y_end-y_start)/20;
+          text(round(label), i*width*0.8/20, y_Coor-30);//y aksens tal
         }
       }
     } else {
@@ -58,8 +61,8 @@ class Coor_bar {
       for (int i=0; i<= 20; i++) {
         line(height*0.2, i*width*0.8/20, height*0.2-10, i*width/20);
         strokeWeight(3); 
-        fill(0); //farve 
-        text(y_start+i*(y_end-y_start)/20, height*0.2-30, i*width*0.8/20);//y aksens tal
+        fill(255, 0, 0); //farve 
+        text((int)y_start+i*(y_end-y_start)/20, i*width*0.8/20, height*0.2-30);//y aksens tal
       }
     }
   }
@@ -67,9 +70,8 @@ class Coor_bar {
   void Gitter() {
     stroke(100); // farve
     for (int i=0; i<20; i++) {
-      line(i*height/20, 0, i*height/20, width*0.8); //x aksen
-      line(0, i*height/20, width*0.8, i*height/20);// y aksen
-      //virker ikke - skal den være der?
+      line(i*height/20*0.8, 0, i*height/20*0.8, width*0.8); //x aksen
+      line(0, i*height/20*0.8, width*0.8, i*height/20*0.8);// y aksen
     }
   }
   void mappedPoint(float realX, float realY) {
