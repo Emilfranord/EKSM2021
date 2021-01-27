@@ -4,7 +4,10 @@ void setup(){
   size(800,800);
   
   ConverterTester t = new ConverterTester();
-  t.test(); // comment this line to prevent testing 
+  //t.test(); // comment this line to prevent testing 
+  C.Gitter();
+  C.render();
+  
   
 }
 
