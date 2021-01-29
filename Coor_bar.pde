@@ -19,7 +19,8 @@ class Coor_bar {
   }
   final int partitions = 20; 
 
-    void axis (float x_start, float x_end, float y_start, float y_end) {
+  void axis (float x_start, float x_end, float y_start, float y_end) {
+    stroke(0);
     strokeWeight(1);
 
     float x_Coor = (width*0.8) / 2; // map(0, x_start, x_end, 0, width*0.8);
@@ -42,7 +43,7 @@ class Coor_bar {
       line(i*width*0.8/20, y_Coor, i*width/20*0.8, y_Coor-10);
       strokeWeight(3); 
       if (true ||x_start+i*(y_end-y_start)/20!=0.0) {
-        fill(255, 0, 0); //farve 
+        fill(0, 0, 0); //farve 
         float label = x_start+i*(x_end-x_start)/20;
         text(round(label), i*width*0.8/20, y_Coor-30);//y aksens tal
       }
@@ -61,17 +62,26 @@ class Coor_bar {
   }
 
   void mappedPoint(float realX, float realY, color c) {
-    float screenX = map(realX, this.intervals[0], this.intervals[1], 0, width*0.8);
-    float screenY = map(realY, this.intervals[2], this.intervals[3], 0, height);
+    float screenX = map(realX, this.intervals[0], this.intervals[1], 0, width*0.8 );
+    float screenY = map(realY, this.intervals[2], this.intervals[3], height*0.8, 0);
 
     strokeWeight(2);
     stroke(c);
     point(screenX, screenY);
   }
 
-  void renderFunction(Func f, int lower, int upper, int jumpLength, color c) {
-    for (int value = lower; value <= upper; value+=jumpLength) {
+  void renderFunction(Func f, float lower, float upper, float jumpLength, color c) {
+    for (float value = lower; value <= upper; value+=jumpLength) {
       mappedPoint(value, f.call(value), c);
     }
+  }
+
+  void renderFunction(Func f, color c) {
+    renderFunction(f, (this.intervals[0]), (this.intervals[1]), 0.01, c);
+  }
+
+  void renderFunction(Func f) {
+    color c = color(#0000ff); 
+    renderFunction(f, c);
   }
 }
