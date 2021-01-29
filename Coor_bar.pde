@@ -1,3 +1,10 @@
+enum Direction {
+  X_START,
+  X_END,
+  Y_START,
+  Y_END
+}
+
 class Coor_bar {
 
   float[] intervals;
@@ -12,7 +19,31 @@ class Coor_bar {
 
   void setOrigin(float[] inter) {
     this.intervals = inter;
-  }  
+  }
+
+  void moveOrigin(int direction, float value) {
+    // key for direction x_start, x_end,  y_start, y_end
+    this.intervals[direction] +=value;
+  }
+
+  void moveOrigin(Direction dir, float value) {
+    // key for direction x_start, x_end,  y_start, y_end
+    switch(dir){
+      case X_START:
+        moveOrigin(0, value);
+        break;
+      case X_END:
+        moveOrigin(1, value);
+        break;
+      case Y_START:
+        moveOrigin(3, value);
+        break;
+      case Y_END:
+        moveOrigin(4, value);
+        break;
+    }
+  }
+
 
   void render () {
     axis(this.intervals[0], this.intervals[1], this.intervals[2], this.intervals[3]);
@@ -25,7 +56,7 @@ class Coor_bar {
 
     float x_Coor = (width*0.8) / 2;
     line(x_Coor, 0, x_Coor, height);
-    
+
     for (int i=0; i<= partition; i++) {
       line(x_Coor, i*height*0.8/partition, x_Coor-10, i*height/partition*0.8);
       strokeWeight(3); 
@@ -39,14 +70,14 @@ class Coor_bar {
 
     float y_Coor = height*0.8 /2;
     line(0, y_Coor, width*0.8, y_Coor);
-    
+
     for (int i=0; i<= partition; i++) {
       line(i*width*0.8/partition, y_Coor, i*width/partition*0.8, y_Coor-10);
       strokeWeight(3); 
 
       fill(0, 0, 0); //farve 
       float label = x_start+i*(x_end-x_start)/partition;
-      if (i != partition/2-1 || i != partition/2){
+      if (i != partition/2-1 || i != partition/2) {
         text(round(label), i*width*0.8/partition, y_Coor-30);//y aksens tal
       }
     }

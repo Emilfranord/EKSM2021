@@ -8,7 +8,7 @@ void setup() {
   //ConverterTester t = new ConverterTester();
   //t.test(); // comment this line to prevent testing
 
-  tes = conver.convert("0.5*x + 1");
+  tes = conver.convert("1*x+5");
 }
 
 void draw() {

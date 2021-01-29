@@ -60,7 +60,6 @@ class JSEvaluator implements Func {
   }
 }
 
-
 class LinearEquation implements Func {
   float slope;
   float yIntercept;
