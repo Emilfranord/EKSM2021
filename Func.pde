@@ -17,12 +17,21 @@ class JSEvaluator implements Func {
   ScriptEngine engine = manager.getEngineByName("js");
   Object result = null;
 
+  HashMap<Float,Float> lookupTable = new HashMap<Float,Float>();
+
   String expression;
   JSEvaluator(String _expression) {
     this.expression = _expression;
   }
 
   float call(float x) {
+    // The number might have been found before, so it and the value is stored in RAM
+    // Dynamic programming.
+    if (lookupTable.containsKey(x)){
+      return lookupTable.get(x);
+    }
+    
+    // if we have not found the number before solve for it 
     String tempExpress = expression.replace("x", Float.toString(x));
     Object result = null;
     try {
@@ -34,15 +43,16 @@ class JSEvaluator implements Func {
     if (result != null ) {
       try {
         int temp = (int) result; 
+        lookupTable.put(x, (float) temp);
         return temp;
       }
       catch(Exception e) {
         //print(e);
       }
     }
-
     if (result != null ) {
-      Double temp = (Double) result; 
+      Double temp = (Double) result;
+      lookupTable.put(x, temp.floatValue());
       return temp.floatValue();
     } else {
       return 0;
