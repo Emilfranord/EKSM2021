@@ -19,7 +19,7 @@ class Coor_bar {
   }
   final int partitions = 20; 
 
-    void axis (float x_start, float x_end, float y_start, float y_end) {
+  void axis (float x_start, float x_end, float y_start, float y_end) {
     strokeWeight(1);
 
     float x_Coor = (width*0.8) / 2; // map(0, x_start, x_end, 0, width*0.8);
