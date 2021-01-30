@@ -37,17 +37,6 @@ void draw() {
   C.Gitter();
   C.render();
 
-  
-
   C.renderFunction(tes, color(#ff0000));
-
   
-}
-
-void mousePressed() {
-
-  float[] temp = {40, 80, 50, 70};
-
-
-  C.setOrigin(temp);
 }
