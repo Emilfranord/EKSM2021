@@ -11,8 +11,9 @@ class ConverterTester {
   Converter con = new Converter(); 
 
   void test() {
+    println(con.convert("4 ** 2").call(0), 16);
+     println(con.convert("Math.pow(4,2)").call(0), 16);
     println(con.convert("73/7").call(0), 10.42);
-
     println(con.convert("8").call(0), 8);
     println(con.convert("8.8").call(0), 8.8);
     println(con.convert("-8.8").call(0), -8.8);
