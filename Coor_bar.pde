@@ -1,8 +1,8 @@
 enum Direction {
-  X_START,
-  X_END,
-  Y_START,
-  Y_END
+  X_START, 
+    X_END, 
+    Y_START, 
+    Y_END
 }
 
 class Coor_bar {
@@ -28,19 +28,19 @@ class Coor_bar {
 
   void moveOrigin(Direction dir, float value) {
     // key for direction x_start, x_end,  y_start, y_end
-    switch(dir){
-      case X_START:
-        moveOrigin(0, value);
-        break;
-      case X_END:
-        moveOrigin(1, value);
-        break;
-      case Y_START:
-        moveOrigin(3, value);
-        break;
-      case Y_END:
-        moveOrigin(4, value);
-        break;
+    switch(dir) {
+    case X_START:
+      moveOrigin(0, value);
+      break;
+    case X_END:
+      moveOrigin(1, value);
+      break;
+    case Y_START:
+      moveOrigin(3, value);
+      break;
+    case Y_END:
+      moveOrigin(4, value);
+      break;
     }
   }
 
@@ -110,6 +110,23 @@ class Coor_bar {
   void renderFunction(Func f, float lower, float upper, float jumpLength, color c) {
     for (float value = lower; value <= upper; value+=jumpLength) {
       mappedPoint(value, f.call(value), c);
+    }
+  }
+
+  void renderFunction(Func[] fs ) {
+    for (Func q : fs) {
+      renderFunction(q);
+    }
+  }
+
+  void renderFunction(Func[] fs, color[] colors) throws IndexOutOfBoundsException {
+    if (colors.length >= fs.length) {
+      throw new IndexOutOfBoundsException();
+    }
+    int i = 0;
+    for (Func q : fs) {
+      renderFunction(q, colors[i]);
+      i++;
     }
   }
 
