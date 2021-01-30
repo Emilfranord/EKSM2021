@@ -6,6 +6,7 @@ interface Func {
 // This is a functor class that can be called, and in constructed with the input string as its only parameter.
 // Like all other functors, it can be called and evaluated at x values.
 // This is slower, computationaly, in the long run, but it allows us to progress, because we got stuck with parsing.
+// The propper solution would take too much time to implement.    
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
