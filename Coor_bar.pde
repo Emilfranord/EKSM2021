@@ -1,10 +1,3 @@
-enum Direction {
-  X_START, 
-    X_END, 
-    Y_START, 
-    Y_END
-}
-
 class Coor_bar {
 
   float[] intervals;
@@ -12,6 +5,7 @@ class Coor_bar {
   Coor_bar(float[] _intervals) {
     setOrigin(_intervals);
   }
+  
   Coor_bar() {
     float[] defaultInterval = {-10.0, 10.0, -10.0, 10.0};
     setOrigin(defaultInterval);
@@ -21,25 +15,24 @@ class Coor_bar {
     this.intervals = inter;
   }
 
-  void moveOrigin(int direction, float value) {
+ private void changeInterval(int direction, float value) { // imagine that private works
     // key for direction x_start, x_end,  y_start, y_end
     this.intervals[direction] +=value;
   }
 
-  void moveOrigin(Direction dir, float value) {
-    // key for direction x_start, x_end,  y_start, y_end
+  void changeInterval(Direction dir, float value) {
     switch(dir) {
     case X_START:
-      moveOrigin(0, value);
+      changeInterval(0, value);
       break;
     case X_END:
-      moveOrigin(1, value);
+      changeInterval(1, value);
       break;
     case Y_START:
-      moveOrigin(3, value);
+      changeInterval(2, value);
       break;
     case Y_END:
-      moveOrigin(4, value);
+      changeInterval(3, value);
       break;
     }
   }
@@ -51,8 +44,6 @@ class Coor_bar {
   int partition = 20; 
 
   void axis (float x_start, float x_end, float y_start, float y_end) {
-
-
     stroke(0);
 
     strokeWeight(1);
@@ -131,7 +122,7 @@ class Coor_bar {
   }
 
   void renderFunction(Func f, color c) {
-    renderFunction(f, (this.intervals[0]), (this.intervals[1]), 0.01, c);
+    renderFunction(f, (this.intervals[0]), (this.intervals[1]), 0.1, c);
   }
 
   void renderFunction(Func f) {
