@@ -9,8 +9,8 @@ Func tes;
 
 void setup() {  
   size(800, 800);
-  //ConverterTester t = new ConverterTester();
-  //t.test(); // comment this line to prevent testing
+  ConverterTester t = new ConverterTester();
+  t.test(); // comment this line to prevent testing
 
   PFont font= createFont("arial", 35);
   cp5 = new ControlP5(this);
