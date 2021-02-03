@@ -7,32 +7,45 @@ enum Direction {
     Y_END;
 }
 
+final int MOVEMENT_AMOUNT = 1;
+
+// use the mouse for everything. do not use any keybord input for anything. 
+
 void keyPressed() {
   if (key == 'w') { // move the Y axis two up
-    C.changeInterval(Direction.Y_END, 2);
-    C.changeInterval(Direction.Y_START, 2);
   }
-  if (key =='z') { // zooms out by two
-    C.changeInterval(Direction.Y_END, 2);
-    C.changeInterval(Direction.Y_START, -2);
-
-    C.changeInterval(Direction.X_END, 2);
-    C.changeInterval(Direction.X_START, -2);
+  if (key == 's') { // move the Y axis two up
+    C.changeInterval(Direction.Y_END, -MOVEMENT_AMOUNT);
+    C.changeInterval(Direction.Y_START, -MOVEMENT_AMOUNT);
   }
 }
 
+void mouseDragged(MouseEvent event) {
+  PVector mouseDirection = new PVector(mouseX - pmouseX, mouseY - pmouseY);
+  println(mouseDirection);
+  // four caseses x
+  if (mouseDirection.y <0 ) {
+    C.changeInterval(Direction.Y_END, MOVEMENT_AMOUNT);
+    C.changeInterval(Direction.Y_START, MOVEMENT_AMOUNT);
+  }
+}
 
 void mousePressed() {
 }
 
 
 void mouseWheel(MouseEvent event) {
-  if(event.getCount() > 0){
-    key = 'z';
-    keyPressed();
-  }else{
-    key = 'c';
-    keyPressed();
-  }
+  if (event.getCount() > 0) {
+    C.changeInterval(Direction.Y_END, MOVEMENT_AMOUNT);
+    C.changeInterval(Direction.Y_START, -MOVEMENT_AMOUNT);
 
+    C.changeInterval(Direction.X_END, MOVEMENT_AMOUNT);
+    C.changeInterval(Direction.X_START, -MOVEMENT_AMOUNT);
+  } else {
+    C.changeInterval(Direction.Y_END, -MOVEMENT_AMOUNT);
+    C.changeInterval(Direction.Y_START, MOVEMENT_AMOUNT);
+
+    C.changeInterval(Direction.X_END, -MOVEMENT_AMOUNT);
+    C.changeInterval(Direction.X_START, MOVEMENT_AMOUNT);
+  }
 }
