@@ -98,7 +98,8 @@ class Coor_bar {
     point(screenX, screenY);
   }
 
-  void renderFunction(Func f, float lower, float upper, float jumpLength, color c) {
+  // the function that draws the dots. 
+  void renderFunction(Func f, float lower, float upper, float jumpLength, color c) { 
     for (float value = lower; value <= upper; value+=jumpLength) {
       mappedPoint(value, f.call(value), c);
     }
