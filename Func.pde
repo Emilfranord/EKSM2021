@@ -26,14 +26,14 @@ class JSEvaluator implements Func {
   }
 
   float call(float x) {
-    // The number might have been found before, so it and the value is stored in RAM
+    // The number might have been found before. Therefore valued (x, f(x)) are stored in RAM for faster evaluation 
     // Dynamic programming.
     if (lookupTable.containsKey(x)){
       return lookupTable.get(x);
     }
     
-    // if we have not found the number before solve for it 
-    String tempExpress = expression.replace("x", Float.toString(x));
+    // if we have not found the number before, solve for it 
+    String tempExpress = this.expression.replace("x", Float.toString(x));
     Object result = null;
     try {
       result = engine.eval(tempExpress);
@@ -61,6 +61,7 @@ class JSEvaluator implements Func {
   }
 }
 
+// Unnessesary becaus of the change to JSEvaluator
 class LinearEquation implements Func {
   float slope;
   float yIntercept;
