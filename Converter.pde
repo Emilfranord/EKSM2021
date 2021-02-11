@@ -14,9 +14,34 @@ class Converter {
     if (input.contains("tan")) {
       input = input.replace("tan", "Math.tan");
     }
-    
+
     // TODO: convert (a^b) to Math.pow(a,b) 
-    
+    if (input.contains("^")) {
+      // find the index of hat, go from left to right and count the opening and closing parentheis
+      // then find the relevant indexes and make the new input string. 
+      
+      int hatIndex = input.indexOf("^");
+      int parenthesesCount = 0;
+      int exponentEnd= input.length()+1;
+      int rootStart = 0;
+      for(int i = hatIndex+1;i<input.length() ;i++){
+        if(input.charAt(i) == '('){parenthesesCount++;}
+        if(input.charAt(i) == ')'){parenthesesCount--;}
+        if(parenthesesCount == 0){exponentEnd = i; break;}
+      }
+      
+      parenthesesCount = 0;
+      for(int i = hatIndex-1;i >= 0 ;i--){
+        if(input.charAt(i) == ')'){parenthesesCount++;}
+        if(input.charAt(i) == '('){parenthesesCount--;}
+        if(parenthesesCount == 0){rootStart = i; break;}
+      }
+      String exponent = input.substring(hatIndex+2, exponentEnd);
+      String root = input.substring(rootStart+1,hatIndex-1);
+      String combined = String.format("Math.pow(%s, %s)",root, exponent);
+      input = input.substring(0,rootStart) + combined + input.substring(exponentEnd+1, input.length());
+    }
+
 
     return new JSEvaluator(input); // see comment above JSEvaluator in Func
   }
@@ -26,7 +51,9 @@ class ConverterTester {
   Converter con = new Converter(); 
 
   void test() {
+    println(con.convert("(4)^(2)").call(0), 16);
     println(con.convert("4 ** 2").call(0), 16);
+    println(con.convert("4**2").call(0), 16);
     println(con.convert("Math.pow(4,2)").call(0), 16);
     println(con.convert("73/7").call(0), 10.42);
     println(con.convert("8").call(0), 8);
