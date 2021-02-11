@@ -15,7 +15,7 @@ import javax.script.ScriptException;
 // inspired by https://stackoverflow.com/questions/41532497/how-to-convert-string-to-function-in-java
 class JSEvaluator implements Func {
   ScriptEngineManager manager = new ScriptEngineManager();
-  ScriptEngine engine = manager.getEngineByName("js");
+  ScriptEngine engine = manager.getEngineByName("JavaScript");
   Object result = null;
 
   HashMap<Float,Float> lookupTable = new HashMap<Float,Float>();
