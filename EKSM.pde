@@ -1,12 +1,15 @@
 import controlP5.*;
+import java.util.ArrayList;
 
 Coor_bar C = new Coor_bar();
 
 ControlP5 cp5;
 
+
+
 Converter conver = new Converter();
 Func tes;
-
+ArrayList<Func> funcs = new ArrayList<Func>();
 String F;
 
 void setup() {  
@@ -39,24 +42,26 @@ void setup() {
 
 }
 
+void draw() {
+  background(255);
+  C.Gitter();
+  C.render();
+C.renderFunction(funcs.toArray(new Func[0]));
+  C.renderFunction(tes, color(#ff0000));
+  
+}
+
 void Enter() {
   print("the following text was submitted :");
   F = cp5.get(Textfield.class,"input").getText();
   print(" textInput 1 = " + F);
   println();
+  funcs.add(conver.convert(F));
+  Clear();
 }
 
 void Clear() {
   cp5.get(Textfield.class,"input").clear();
   F="";
   println(F);
-}
-
-void draw() {
-  background(255);
-  C.Gitter();
-  C.render();
-
-  C.renderFunction(tes, color(#ff0000));
-  
 }
