@@ -10,6 +10,8 @@ Func tes;
 ArrayList<Func> funcs = new ArrayList<Func>();
 String F;
 
+//TODO: make a "return to origin" button, handle converter exampels
+
 void setup() {  
   size(800, 800);
   ConverterTester t = new ConverterTester();
@@ -53,19 +55,18 @@ void Enter() {
   print(" textInput 1 = " + F);
   println();
   funcs.add(conver.convert(F));
-  Clear();
-}
-
-void Clear() {
   cp5.get(Textfield.class, "input").clear();
   F="";
   println(F);
 }
 
+void Clear() {
+  clearLines();
+
+}
 void clearLines() {
   funcs = new ArrayList<Func>();
 }
-
 
 void keyPressed() {
   // make the enter button on the keybord have the same functionality as the Enter button on the UI.
