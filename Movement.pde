@@ -20,13 +20,16 @@ void keyPressed() {
   }
 }
 
+// TODO: add the remaining directions 
 void mouseDragged(MouseEvent event) {
-  PVector mouseDirection = new PVector(mouseX - pmouseX, mouseY - pmouseY);
-  println(mouseDirection);
-  // four caseses x
-  if (mouseDirection.y <0 ) {
-    C.changeInterval(Direction.Y_END, MOVEMENT_AMOUNT);
-    C.changeInterval(Direction.Y_START, MOVEMENT_AMOUNT);
+  if(frameCount % 30 == 0 ){
+    PVector mouseDirection = new PVector(mouseX - pmouseX, mouseY - pmouseY);
+    println(mouseDirection);
+    // four caseses x
+    if (mouseDirection.y <0 ) {
+      C.changeInterval(Direction.Y_END, MOVEMENT_AMOUNT);
+      C.changeInterval(Direction.Y_START, MOVEMENT_AMOUNT);
+    }
   }
 }
 
