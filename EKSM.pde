@@ -4,11 +4,10 @@ import java.util.ArrayList;
 Coor_bar C = new Coor_bar();
 
 ControlP5 cp5;
-
+SQLite db;
 
 
 Converter conver = new Converter();
-Func tes;
 ArrayList<Func> funcs = new ArrayList<Func>();
 String F;
 
@@ -16,6 +15,10 @@ void setup() {
   size(800, 800);
   //ConverterTester t = new ConverterTester();
   //t.test(); // comment this line to prevent testing
+  
+  db= new SQLite(this, "EKSM.db");
+  assert db.connect():
+  "Connection failed";
 
   PFont font= createFont("arial", 35);
   cp5 = new ControlP5(this);
@@ -38,7 +41,7 @@ void setup() {
     .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER);
 
 
-  tes = conver.convert("1*x+5");
+  
 
 }
 
@@ -47,7 +50,7 @@ void draw() {
   C.Gitter();
   C.render();
 C.renderFunction(funcs.toArray(new Func[0]));
-  C.renderFunction(tes, color(#ff0000));
+ 
   
 }
 
