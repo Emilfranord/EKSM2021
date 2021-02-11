@@ -10,32 +10,32 @@ enum Direction {
 final int MOVEMENT_AMOUNT = 1;
 
 // use the mouse for everything. do not use any keybord input for anything. 
-
-void keyPressed() {
-  if (key == 'w') { // move the Y axis two up
-  }
-  if (key == 's') { // move the Y axis two up
-    C.changeInterval(Direction.Y_END, -MOVEMENT_AMOUNT);
-    C.changeInterval(Direction.Y_START, -MOVEMENT_AMOUNT);
-  }
-}
-
-// TODO: add the remaining directions 
 void mouseDragged(MouseEvent event) {
-  if(frameCount % 30 == 0 ){
+  if (frameCount % 10 == 0 ) {
     PVector mouseDirection = new PVector(mouseX - pmouseX, mouseY - pmouseY);
     println(mouseDirection);
     // four caseses x
-    if (mouseDirection.y <0 ) {
+    if (mouseDirection.y >0 ) {
       C.changeInterval(Direction.Y_END, MOVEMENT_AMOUNT);
       C.changeInterval(Direction.Y_START, MOVEMENT_AMOUNT);
     }
+
+    if (mouseDirection.y <0 ) {
+      C.changeInterval(Direction.Y_END, -MOVEMENT_AMOUNT);
+      C.changeInterval(Direction.Y_START, -MOVEMENT_AMOUNT);
+    }
+
+    if (mouseDirection.x <0 ) {
+      C.changeInterval(Direction.X_END, MOVEMENT_AMOUNT);
+      C.changeInterval(Direction.X_START, MOVEMENT_AMOUNT);
+    }
+
+    if (mouseDirection.x >0 ) {
+      C.changeInterval(Direction.X_END, -MOVEMENT_AMOUNT);
+      C.changeInterval(Direction.X_START, -MOVEMENT_AMOUNT);
+    }
   }
 }
-
-void mousePressed() {
-}
-
 
 void mouseWheel(MouseEvent event) {
   if (event.getCount() > 0) {
@@ -52,3 +52,12 @@ void mouseWheel(MouseEvent event) {
     C.changeInterval(Direction.X_START, MOVEMENT_AMOUNT);
   }
 }
+
+//void keyPressed() {
+//  if (key == 'w') { // move the Y axis two up
+//  }
+//  if (key == 's') { // move the Y axis two up
+//    C.changeInterval(Direction.Y_END, -MOVEMENT_AMOUNT);
+//    C.changeInterval(Direction.Y_START, -MOVEMENT_AMOUNT);
+//  }
+//}
