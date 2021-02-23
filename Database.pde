@@ -1,14 +1,13 @@
 import de.bezier.data.sql.*;
 
-void writeDatabase (){
+void writeDatabase () {
 
-String query ="INSERT INTO Functions";
-db.query(query);
-
+  String query ="INSERT INTO Functions";
+  db.query(query);
 }
 
-void getFunctions(){
+void getFunctions() {
 
-String query = "SELECT * FROM Functions";
-db.query(query);
+  String query = "SELECT * FROM Functions";
+  db.query(query);
 }
