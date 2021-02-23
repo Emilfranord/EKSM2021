@@ -15,14 +15,13 @@ String F;
 
 void setup() {  
   size(800, 800);
-  
-  //ConverterTester t = new ConverterTester();
-  //t.test(); // comment this line to prevent testing
-  
+
+  ConverterTester t = new ConverterTester();
+  t.test(); // comment this line to prevent testing
+
   db= new SQLite(this, "EKSM.db");
   assert db.connect():
   "Connection failed";
-
 
   PFont font= createFont("arial", 35);
   cp5 = new ControlP5(this);
@@ -53,19 +52,20 @@ void draw() {
 }
 
 void Enter() {
-  print("the following text was submitted :");
+  print("the following text was submitted: ");
   F = cp5.get(Textfield.class, "input").getText();
-  print(" textInput 1 = " + F);
-  println();
-  funcs.add(conver.convert(F));
-  cp5.get(Textfield.class, "input").clear();
-  F="";
-  println(F);
+  if (F.length() != 0){
+    print("textInput 1 = " + F);
+    println();
+    funcs.add(conver.convert(F));
+    cp5.get(Textfield.class, "input").clear();
+    F="";
+    println(F);
+  }
 }
 
 void Clear() {
   clearLines();
-
 }
 void clearLines() {
   funcs = new ArrayList<Func>();
