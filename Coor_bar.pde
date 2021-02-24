@@ -101,10 +101,27 @@ class Coor_bar {
     point(screenX, screenY);
   }
 
+
+  void mappedLine(float realX, float realY, float realXTwo, float realYTwo,  color c) {
+    float screenX = map(realX, this.intervals[0], this.intervals[1], 0, width*0.8 );
+    float screenY = map(realY, this.intervals[2], this.intervals[3], height*0.8, 0);
+
+    float screenXTwo = map(realXTwo, this.intervals[0], this.intervals[1], 0, width*0.8 );
+    float screenYTwo = map(realYTwo, this.intervals[2], this.intervals[3], height*0.8, 0);
+
+    strokeWeight(2);
+    stroke(c);
+    line(screenX, screenY,screenXTwo, screenYTwo);
+  }
+
+
+
+
   // the function that draws the dots. 
   void renderFunction(Func f, float lower, float upper, float jumpLength, color c) { 
     for (float value = lower; value <= upper; value+=jumpLength) {
-      mappedPoint(value, f.call(value), c);
+      //mappedPoint(value, f.call(value), c);
+      mappedLine(value, f.call(value),value+  jumpLength, f.call(value+jumpLength), c);
     }
   }
 
