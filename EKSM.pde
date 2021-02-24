@@ -11,7 +11,7 @@ Converter conver = new Converter();
 ArrayList<Func> funcs = new ArrayList<Func>();
 String F;
 
-//TODO: make a "return to origin" button, handle converter exampels
+//TODO: make real db system
 
 void setup() {  
   size(800, 800);
@@ -74,7 +74,7 @@ void clearLines() {
 }
 
 void keyPressed() {
-  // make the enter button on the keybord have the same functionality as the Enter button on the UI.
+  // makes the enter button on the keybord have the same functionality as the Enter button on the UI.
   if (key == ENTER) { 
     Enter();
     key = ' ';
