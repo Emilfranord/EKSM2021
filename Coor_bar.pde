@@ -5,17 +5,21 @@ class Coor_bar {
   Coor_bar(float[] _intervals) {
     setOrigin(_intervals);
   }
-  
+
   Coor_bar() {
-    float[] defaultInterval = {-10.0, 10.0, -10.0, 10.0};
-    setOrigin(defaultInterval);
+    reset();
   }
 
   void setOrigin(float[] inter) {
     this.intervals = inter;
   }
 
- private void changeInterval(int direction, float value) { // imagine that private works
+  void reset() {
+    float[] defaultInterval = {-10.0, 10.0, -10.0, 10.0};
+    setOrigin(defaultInterval);
+  }
+
+  private void changeInterval(int direction, float value) { // imagine that private works
     // key for direction x_start, x_end,  y_start, y_end
     this.intervals[direction] +=value;
   }
@@ -36,7 +40,6 @@ class Coor_bar {
       break;
     }
   }
-
 
   void render () {
     axis(this.intervals[0], this.intervals[1], this.intervals[2], this.intervals[3]);
