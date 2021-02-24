@@ -1,4 +1,7 @@
 // not a class, but a collection of processing functios.
+// the tab has been made to section off the coordinate movement system. 
+// Processing will not allow mouseDragged or mouseWheel to be defined inside a diffrent object,
+// so it is instead defined here.
 
 enum Direction {
   X_START, 
@@ -13,8 +16,7 @@ final int MOVEMENT_AMOUNT = 1;
 void mouseDragged(MouseEvent event) {
   if (frameCount % 10 == 0 ) {
     PVector mouseDirection = new PVector(mouseX - pmouseX, mouseY - pmouseY);
-    println(mouseDirection);
-    // four caseses x
+    // four caseses for x, and 
     if (mouseDirection.y >0 ) {
       C.changeInterval(Direction.Y_END, MOVEMENT_AMOUNT);
       C.changeInterval(Direction.Y_START, MOVEMENT_AMOUNT);
