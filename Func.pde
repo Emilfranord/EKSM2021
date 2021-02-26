@@ -18,31 +18,36 @@ class JSEvaluator implements Func {
   ScriptEngine engine = manager.getEngineByName("JavaScript");
   Object result = null;
 
-  HashMap<Float,Float> lookupTable = new HashMap<Float,Float>();
+  HashMap<Float, Float> lookupTable = new HashMap<Float, Float>();
+  // Storage system for x's and their mapped values after evaluation.
 
   String expression;
   JSEvaluator(String _expression) {
     this.expression = _expression;
   }
 
+  String toString() {
+    return this.expression;
+  }
+
   float call(float x) {
     // The number might have been found before. Therefore valued (x, f(x)) are stored in RAM for faster evaluation 
     // Dynamic programming.
-    if (lookupTable.containsKey(x)){
+    if (lookupTable.containsKey(x)) {
       return lookupTable.get(x);
     }
-    
-    // if we have not found the number before, solve for it 
+
+    // If we have not found the number before, solve for it 
     String tempExpress = this.expression.replace("x", Float.toString(x));
     Object result = null;
     try {
-      result = engine.eval(tempExpress);
+      result = engine.eval(tempExpress); // make JS evaluate the expression. If it fails the error is caught. 
     } 
     catch(Exception e) {
       print(e);
     }
-    if (result != null ) {
-      try {
+    if (result != null) { // if the error was caught the object has no value, and it cannot be converted into a number. 
+      try { // if it is a integer convert it to that and return, else do nothing.
         int temp = (int) result; 
         lookupTable.put(x, (float) temp);
         return temp;
@@ -51,7 +56,7 @@ class JSEvaluator implements Func {
         //print(e);
       }
     }
-    if (result != null ) {
+    if (result != null) { // if it was not a integer, try to turn it int a duble, else return 0.
       Double temp = (Double) result;
       lookupTable.put(x, temp.floatValue());
       return temp.floatValue();
