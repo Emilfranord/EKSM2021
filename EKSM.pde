@@ -23,6 +23,7 @@ void setup() {
   assert db.connect():
   "Connection failed";
 
+  // make the buttons and text boxes for the GUI
   PFont font= createFont("arial", 35);
   cp5 = new ControlP5(this);
   cp5.addTextfield("input")
@@ -31,7 +32,6 @@ void setup() {
     .setFont(font)
     .setFocus(true)
     .setColor(color(255, 0, 0));
-
 
   cp5.addBang("Enter")
     .setPosition(width*0.8, 150)
@@ -46,9 +46,10 @@ void setup() {
 
 void draw() {
   background(255);
-  C.Gitter();
+  C.Gitter(); 
   C.render();
   C.renderFunction(funcs.toArray(new Func[0]));
+  // converts the java arraylist into a array and rendes all the functions.
 }
 
 void Enter() {
