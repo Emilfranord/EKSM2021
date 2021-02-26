@@ -75,13 +75,14 @@ class Coor_bar {
       fill(0, 0, 0); //farve 
       float label = x_start+i*(x_end-x_start)/partition;
       if (i != partition/2-1 || i != partition/2) {
-        text(round(label), i*width*0.8/partition, y_Coor-30);//y aksens tal
+        text(round(label), i*width*0.8/partition-2, y_Coor-15);//x aksens tal
       }
     }
   }
 
   void Gitter() {
     stroke(100); // farve
+    strokeWeight(1); 
     for (int i=0; i<partition; i++) {
       line(i*height/partition*0.8, 0, i*height/partition*0.8, width*0.8); //x aksen
       line(0, i*height/partition*0.8, width*0.8, i*height/partition*0.8);// y aksen
