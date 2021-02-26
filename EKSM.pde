@@ -55,10 +55,11 @@ void draw() {
 void Enter() {
   F = cp5.get(Textfield.class, "input").getText();
   if (F.length() != 0){
-    funcs.add(conver.convert(F));
+    Func temp = conver.convert(F);
+    funcs.add(temp);
+    writeDatabase(temp);
     cp5.get(Textfield.class, "input").clear();
     F="";
-    println(F);
   }
 }
 
