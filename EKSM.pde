@@ -52,11 +52,8 @@ void draw() {
 }
 
 void Enter() {
-  print("the following text was submitted: ");
   F = cp5.get(Textfield.class, "input").getText();
   if (F.length() != 0){
-    print("textInput 1 = " + F);
-    println();
     funcs.add(conver.convert(F));
     cp5.get(Textfield.class, "input").clear();
     F="";
