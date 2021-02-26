@@ -63,6 +63,8 @@ class Converter {
 }
 
 class ConverterTester {
+  // The tester class for the Converter class.
+  // This enshures that the converter does its job
   Converter con = new Converter(); 
   
   void equals(float a, float b){
@@ -88,7 +90,7 @@ class ConverterTester {
     equals(con.convert("3x+0").call(5), 15);
     equals(con.convert("3*x+0").call(5), 15);
     equals(con.convert("x*3+0").call(5), 15);
-    equals(con.convert("3x+5").call(5), 20); // user must explicitly write * to multiply
+    equals(con.convert("3x+5").call(5), 20);
     equals(con.convert("3x-5").call(5), 10);
 
     equals(con.convert("8*(x+1)").call(2), 24);
