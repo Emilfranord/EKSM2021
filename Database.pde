@@ -14,7 +14,7 @@ void writeDatabase(Func theFunction) {
 }
 
 void getFunctions() {
-
+// Denne funktion bliver ikke brugt, da den ikke er relevant 
   String query = "SELECT * FROM Functions";
   db.query(query);
   while (db.next()) {
