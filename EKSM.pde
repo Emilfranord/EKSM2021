@@ -20,7 +20,7 @@ void setup() {
   //t.test(); // comment this line to prevent testing
 
   db= new SQLite(this, "EKSM.db");
-  assert !db.connect():
+  assert db.connect():
   "Connection failed";
 
   PFont font= createFont("arial", 35);
