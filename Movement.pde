@@ -1,7 +1,7 @@
 // not a class, but a collection of processing functios.
 // the tab has been made to section off the coordinate movement system. 
 // Processing will not allow mouseDragged or mouseWheel to be defined inside a diffrent object,
-// so it is instead defined here.
+// so it is defined here instead.
 
 enum Direction {
   X_START, 
